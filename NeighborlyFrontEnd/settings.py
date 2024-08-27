@@ -15,3 +15,4 @@ API_VERSION = 'v1'
 # API_URL format: "https://[FUNCTION_APP_NAME_GOES_HERE].azurewebsites.net/api"
 # Update this with your deployed Function App URL
 API_URL = "https://myuniqueapp2024.azurewebsites.net/api"
+#PI_URL = "http://localhost:7071/api"
