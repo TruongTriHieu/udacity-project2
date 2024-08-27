@@ -1,11 +1,11 @@
 {
-  "IsEncrypted": true,
+  "IsEncrypted": false,
   "Values": {
-    "FUNCTIONS_WORKER_RUNTIME": "CfDJ8KvJ6DmYyMJCgkPKMHi9yggxobSNL+EiBudqjTbkN08MV8FPGx7WqKyJXi1vK5/3O48YnxQvGjJtBiH2gbzh8qUxrA2On+1JRf1xQeWwdKwATocSwT1CMT9SN2gtzXs0ZQ=="
+    "FUNCTIONS_WORKER_RUNTIME": "python"
   },
   "ConnectionStrings": {
     "CosmosDBConnectionString": "mongodb://mycosmosdbaccount:4kUr1fwTLLBSY1QjRbiG9XzTr2iOfLKdPgRGVLO9EMY5SXrEOmCZUJJOHwDjR5ypMU74W9hK1CjJACDbQmeuJQ==@mycosmosdbaccount.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@mycosmosdbaccount@"
   },
 
-  "AzureWebJobsStorage": ""
+  "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=myudacityproject2;AccountKey=ogjtVgEPwnu6LZ7P3MW+F60SvEpxFOBYTM4dylUMyxtACAehWwBYCPjSS3Pj+hEY8JtX2SVn+qA/+AStxe/uoQ==;EndpointSuffix=core.windows.net"
 }
