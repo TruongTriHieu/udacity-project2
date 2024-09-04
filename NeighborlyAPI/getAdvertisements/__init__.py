@@ -9,7 +9,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         # Lấy chuỗi kết nối từ biến môi trường
         connection_string = os.getenv("CosmosDBConnectionString")
         client = pymongo.MongoClient(connection_string)
-        database = client['NeighborlyDB']  # Thay đổi tên cơ sở dữ liệu nếu cần
+        database = client['test']  # Thay đổi tên cơ sở dữ liệu nếu cần
         collection = database['advertisements']
 
         # Truy vấn tất cả tài liệu trong collection
