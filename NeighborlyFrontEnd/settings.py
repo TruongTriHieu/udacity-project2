@@ -1,7 +1,7 @@
 #--------- Cài đặt Flask
-SERVER_HOST = '0.0.0.0' # Lắng nghe trên tất cả các địa chỉ IP
-SERVER_PORT = 8000 # Cổng mà Azure yêu cầu
-FLASK_DEBUG = False # Tắt chế độ debug cho môi trường sản xuất
+SERVER_HOST = '0.0.0.0' 
+SERVER_PORT = 8000 
+FLASK_DEBUG = False 
 
 # Cài đặt Flask-Restplus
 SWAGGER_UI_DOC_EXPANSION = 'list'
