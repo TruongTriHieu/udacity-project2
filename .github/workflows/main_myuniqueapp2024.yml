@@ -1,8 +1,4 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/azure/functions-action
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-# More info on Python, GitHub Actions, and Azure Functions: https://aka.ms/python-webapps-actions
-
-name: Build and deploy Python project to Azure Function App - myuniqueapp2024
+name: Build and deploy Python app to Azure Web App - Neighborly
 
 on:
   push:
@@ -10,51 +6,52 @@ on:
       - main
   workflow_dispatch:
 
-env:
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.' # set this to the path to your web app project, defaults to the repository root
-  PYTHON_VERSION: '3.9' # set this to the python version to use (supports 3.6, 3.7, 3.8)
-
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
 
-      - name: Setup Python version
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python version
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
+          python-version: '3.11'
 
       - name: Create and start virtual environment
         run: |
           python -m venv venv
           source venv/bin/activate
-
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      # Optional: Add step to run tests here
-
+      
+      - name: Install dependencies for NeighborlyAPI
+        run: |
+          cd NeighborlyAPI
+          pip install -r requirements.txt
+          
+      - name: Install dependencies for NeighborlyfrontEnd
+        run: |
+          cd ../NeighborlyfrontEnd
+          pip install -r requirements.txt
+        
       - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+        run: |
+          cd ..
+          zip -r release.zip NeighborlyAPI NeighborlyfrontEnd
 
-      - name: Upload artifact for deployment job
+      - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v4
         with:
           name: python-app
-          path: |
-            release.zip
-            !venv/
+          path: release.zip
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
     environment:
       name: 'Production'
-      url: ${{ steps.deploy-to-function.outputs.webapp-url }}
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write #This is required for requesting the JWT
+      id-token: write # This is required for requesting the JWT
 
     steps:
       - name: Download artifact from build job
@@ -63,22 +60,18 @@ jobs:
           name: python-app
 
       - name: Unzip artifact for deployment
-        run: unzip release.zip     
-        
+        run: unzip release.zip
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_08691755C76C47F59AD1CC87F6673CBD }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_E7EC069CE6E040A88E81558942161120 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_874B0C93D74D44878363C6C4A6F7DE0F }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_3076828C9EBC4F2DB76102122AF9A1A0 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_B80FFCC86A9144F3939E7E25FF0B2AAF }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_9DA4D1BE1C8542899D459840A7AB4661 }}
 
-      - name: 'Deploy to Azure Functions'
-        uses: Azure/functions-action@v1
-        id: deploy-to-function
+      - name: 'Deploy to Azure Web App'
+        uses: azure/webapps-deploy@v3
+        id: deploy-to-webapp
         with:
-          app-name: 'myuniqueapp2024'
+          app-name: 'Neighborly'
           slot-name: 'Production'
-          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-          scm-do-build-during-deployment: true
-          enable-oryx-build: true
-          
