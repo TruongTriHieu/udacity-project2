@@ -1,7 +1,7 @@
 #--------- Cài đặt Flask
 SERVER_HOST = 'https://neighborly-e2avdrgaesdcamdx.southeastasia-01.azurewebsites.net/' 
-SERVER_PORT = 8080 
-FLASK_DEBUG = False 
+SERVER_PORT = 5000 
+FLASK_DEBUG = True 
 
 SWAGGER_UI_DOC_EXPANSION = 'list'
 RESTPLUS_VALIDATE = True
