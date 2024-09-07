@@ -3,14 +3,12 @@ SERVER_HOST = '0.0.0.0'
 SERVER_PORT = 8080 
 FLASK_DEBUG = False 
 
-# Cài đặt Flask-Restplus
 SWAGGER_UI_DOC_EXPANSION = 'list'
 RESTPLUS_VALIDATE = True
 RESTPLUS_MASK_SWAGGER = False
 RESTPLUS_404_HELP = True
 API_VERSION = 'v1'
 
-#-------- Các hằng số của Azure
 
 # API_URL định dạng: "https://[FUNCTION_APP_NAME_GOES_HERE].azurewebsites.net/api"
 # Cập nhật URL của Function App đã triển khai
