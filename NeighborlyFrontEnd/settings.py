@@ -1,5 +1,5 @@
 #--------- Cài đặt Flask
-SERVER_HOST = '0.0.0.0' 
+SERVER_HOST = 'https://neighborly-e2avdrgaesdcamdx.southeastasia-01.azurewebsites.net/' 
 SERVER_PORT = 8080 
 FLASK_DEBUG = False 
 
